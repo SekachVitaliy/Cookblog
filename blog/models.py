@@ -61,6 +61,9 @@ class Post(models.Model):
         self.slug = self.title.lower()
         return super(Post, self).save(*args, **kwargs)
 
+    def get_recipes(self):
+        return self.recipes.all()
+
 
 class Recipe(models.Model):
     name = models.CharField(max_length=100)

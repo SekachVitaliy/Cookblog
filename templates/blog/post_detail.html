@@ -35,7 +35,7 @@
                         <p>{{ post.text|truncatewords:20 }}</p>
                     </div>
                     <div class="single-post__recipe__details">
-                        {% for recipe in post.get_recipes %}
+                        {% for recipe in post.recipes.all %}
                         <div class="single-post__recipe__details__option">
                             <ul>
                                 <li>

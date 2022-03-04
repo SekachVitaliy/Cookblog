@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
+from ckeditor.fields import RichTextField
 
 
 class Category(MPTTModel):
@@ -20,8 +22,9 @@ class Category(MPTTModel):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = self.name.lower()
-        return super(Category, self).save(*args, **kwargs)
+        if not self.slug:
+            self.slug = self.name.lower()
+            return super(Category, self).save(*args, **kwargs)
 
 
 class Tag(models.Model):
@@ -36,8 +39,9 @@ class Tag(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = self.name.lower()
-        return super(Tag, self).save(*args, **kwargs)
+        if not self.slug:
+            self.slug = self.name.lower()
+            return super(Tag, self).save(*args, **kwargs)
 
 
 class Post(models.Model):
@@ -58,8 +62,12 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.slug = self.title.lower()
+        if not self.slug:
+            self.slug = self.title.lower()
         return super(Post, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("post_single", kwargs={"slug": self.category.slug, "post_slug": self.slug})
 
 
 class Recipe(models.Model):
@@ -67,8 +75,8 @@ class Recipe(models.Model):
     serves = models.CharField(max_length=50)
     prep_time = models.PositiveIntegerField(default=0)
     cook_time = models.PositiveIntegerField(default=0)
-    ingredients = models.TextField()
-    directions = models.TextField()
+    ingredients = RichTextField()
+    directions = RichTextField()
     post = models.ForeignKey(
         Post,
         related_name="recipes",

@@ -9,7 +9,7 @@ class RecipeInline(admin.StackedInline):
 
 @admin.register(models.Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ["title", "category", "author", "create_at", "id"]
+    list_display = ["title", "category", "slug", "author", "create_at", "id"]
     prepopulated_fields = {'slug': ('title', 'category'), }
     inlines = [RecipeInline]
     save_as = True

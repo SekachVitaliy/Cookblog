@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import CreateView, DetailView, ListView
 
-from .forms import PostForm, CategoryForm, RecipeForm, TagForm
+from .forms import CategoryForm, PostForm, RecipeForm, TagForm
 from .models import Post
 
 

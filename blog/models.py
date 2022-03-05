@@ -1,9 +1,9 @@
-from django.db import models
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
+from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
-from ckeditor.fields import RichTextField
 
 
 class Category(MPTTModel):

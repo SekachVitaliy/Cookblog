@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from .models import Post, Category, Recipe, Tag
+
+from .models import Category, Post, Recipe, Tag
 
 
 class PostForm(ModelForm):

@@ -24,7 +24,7 @@ class Category(MPTTModel):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = self.name.lower()
-            return super(Category, self).save(*args, **kwargs)
+        return super(Category, self).save(*args, **kwargs)
 
 
 class Tag(models.Model):
@@ -41,7 +41,7 @@ class Tag(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = self.name.lower()
-            return super(Tag, self).save(*args, **kwargs)
+        return super(Tag, self).save(*args, **kwargs)
 
 
 class Post(models.Model):
@@ -57,6 +57,7 @@ class Post(models.Model):
     class Meta:
         verbose_name_plural = 'Посты'
         verbose_name = 'Пост'
+        ordering = ['create_at']
 
     def __str__(self):
         return self.title

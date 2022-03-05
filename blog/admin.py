@@ -2,6 +2,7 @@ from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 from . import models
 
+
 class RecipeInline(admin.StackedInline):
     model = models.Recipe
     extra = 1

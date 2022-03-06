@@ -63,7 +63,7 @@
                                     <li>20 Comment</li>
                                 </ul>
                                 <p>{{ post.text |slice:":250"}}</p>
-                                <a href="#" class="primary-btn">Read more</a>
+                                <a href="{{ post.get_absolute_url }}" class="primary-btn">Read more</a>
                                 <div class="post__social">
                                     <span>Share</span>
                                     <a href="#"><i class="fa fa-facebook"></i> <span>82</span></a>

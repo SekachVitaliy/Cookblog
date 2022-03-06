@@ -32,7 +32,7 @@
                         </ul>
                     </div>
                     <div class="single-post__top__text">
-                        <p>{{ post.text|truncatewords:20 }}</p>
+                        <p>{{ post.text|slice:"250:" }}</p>
                     </div>
                     <div class="single-post__recipe__details">
                         {% for recipe in post.recipes.all %}
@@ -63,6 +63,9 @@
                                 {{ recipe.directions| safe }}
                             </div>
                         {% endfor %}
+                    </div>
+                    <div class="single-post__desc">
+                        <p>{{ post.text|slice:"250:" }}</p>
                     </div>
 
                     <div class="single-post__next__previous">
